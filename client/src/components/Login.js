@@ -1,17 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
-const Login = () => {
+const initialValues = {
+    username: "",
+    password: ""
+}
+
+const Login = props => {
+    const [values, setValues] = useState(initialValues);
+
+    const handleChange = e => {
+        setValues({
+            ...values,
+            [e.target.name]: e.target.value
+        });
+    }
+
+    const postLogin = async e => {
+        e.preventDefault();
+
+        if(values.username && values.password) {
+            axios.post("http://localhost:5000/api/auth/login", values)
+                .then(res => {
+                    console.log(res);
+                    props.history.push("/users");
+                })
+                .catch(err => console.log(err.response.data.message));
+        }
+    }
+
     return (
-        <form>
-            <div class="input-group">
+        <form onSubmit = {postLogin}>
+            <div className="input-group">
                 <label htmlFor="username">Username:</label>
-                <input id="username" type="text" name="username" placeholder="Enter Username" />
+                <input id="username" type="text" name="username" value = {values.username} onChange = {handleChange} placeholder="Enter Username" />
             </div>
 
-            <div class="input-group">
+            <div className="input-group">
                 <label htmlFor="password">Password:</label>
-                <input id="password" type="password" name="password" placeholder="Enter Password" />
+                <input id="password" type="password" name="password" value = {values.password} onChange = {handleChange} placeholder="Enter Password" />
             </div>
 
             <button type="submit">LOGIN</button>
