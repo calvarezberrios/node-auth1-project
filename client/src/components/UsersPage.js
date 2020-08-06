@@ -23,7 +23,7 @@ const UsersPage = () => {
                     <div key = {user.id}>
                         <li className = "user-card-title">{`${user.lname}, ${user.fname}`}</li>
                         <li>{user.username}</li>
-                        <li>Password --- "Wouldn't youn like to know?"</li>
+                        <li>Password --- "Wouldn't you like to know?"</li>
                     </div>
                 ))
             )}
