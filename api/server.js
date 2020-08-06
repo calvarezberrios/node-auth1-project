@@ -15,7 +15,7 @@ const sessionConfig = {
     secret: "authenticateUser",
     cookie: {
         maxAge: 1000 * 60 * 60,
-        secure: false,
+        secure: true,
         httpOnly: true
     },
     resave: false,

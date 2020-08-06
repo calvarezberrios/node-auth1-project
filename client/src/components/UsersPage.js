@@ -6,13 +6,13 @@ const UsersPage = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axiosWithAuth()
-            .get("/users")
-            .then(res => {
-                setUsers(res.data);
+        axios.get("https://node-auth1-mannie.herokuapp.com/api/users", {withCredentials: true})
+            .then((res) => {
+                console.log(res.session)
+                setUsers(res);
             })
             .catch(err => {
-                console.log(err.response.data);
+                console.log(err.response);
             });
     }, []);
     return (

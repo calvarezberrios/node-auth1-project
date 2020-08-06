@@ -22,13 +22,12 @@ const Login = props => {
         e.preventDefault();
 
         if(values.username && values.password) {
-            axiosWithAuth()
-                .post("/auth/login", values)
+            axios.post("https://node-auth1-mannie.herokuapp.com/api/auth/login", values)
                 .then(res => {
-                    console.log(res.data);
+                    console.log(res);
                     props.history.push("/users");
                 })
-                .catch(err => console.log(err.response.data.message));
+                .catch(err => console.log(err.response));
         }
     }
 
