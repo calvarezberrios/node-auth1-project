@@ -34,7 +34,7 @@ router.post("/login", async (req, res, next) => {
             
             if(found && bcrypt.compareSync(user.password, found.password)) {
                 req.session.user = found;
-                res.status(200).json({ message: `Welcome ${found.fname} ${found.lname}`});
+                res.status(200).json({ message: `Welcome ${found.fname} ${found.lname}`, user: found });
             } else {
                 next({ code: 401, message: "Username or Password incorrect" });
             }

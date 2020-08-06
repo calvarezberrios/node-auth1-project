@@ -4,6 +4,7 @@ import { Route } from "react-router-dom";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import UsersPage from "./components/UsersPage";
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
 

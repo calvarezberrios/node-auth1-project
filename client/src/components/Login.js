@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 const initialValues = {
     username: "",
@@ -21,9 +22,10 @@ const Login = props => {
         e.preventDefault();
 
         if(values.username && values.password) {
-            axios.post("http://localhost:5000/api/auth/login", values)
+            axiosWithAuth()
+                .post("/auth/login", values)
                 .then(res => {
-                    console.log(res);
+                    console.log(res.data);
                     props.history.push("/users");
                 })
                 .catch(err => console.log(err.response.data.message));
