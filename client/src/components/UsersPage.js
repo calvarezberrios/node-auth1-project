@@ -6,7 +6,7 @@ const UsersPage = () => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        axios.get("https://node-auth1-mannie.herokuapp.com/api/users", {withCredentials: true})
+        axios.get("https://node-auth1-mannie.herokuapp.com/api/users")
             .then((res) => {
                 console.log(res.session)
                 setUsers(res);
